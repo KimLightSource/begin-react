@@ -1,14 +1,14 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 
-function User({user, onRemove, onToggle}) {
+function User({ user, onRemove, onToggle }) {
     useEffect(() => {
-        console.log('컴포넌트가 화면에 나타남')
+        console.log('user 값이 설정됨');
+        console.log(user);
         return () => {
-            console.log('컴포넌트가 화면에서 사라짐')
+            console.log('user 가 바뀌기 전..');
+            console.log(user);
         };
-    }, []);
-    
-    
+    } );
     return (
         <div>
             <b
@@ -17,14 +17,16 @@ function User({user, onRemove, onToggle}) {
                     color: user.active ? 'green' : 'black'
                 }}
                 onClick={() => onToggle(user.id)}
-            >{user.username}</b>
+            >
+                {user.username}
+            </b>
             <span>({user.email})</span>
             <button onClick={() => onRemove(user.id)}>삭제</button>
         </div>
     );
 }
-function UserList({users, onRemove, onToggle}) {
 
+function UserList({ users, onRemove, onToggle }) {
     return (
         <div>
             {users.map(user => (
